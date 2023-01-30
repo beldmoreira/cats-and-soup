@@ -15,15 +15,15 @@ model Cat {
   name     String @unique
   breed    String 
   friend   Boolean @default(false)
-  facilities Facility[]
+  facility Facility  @relation(fields: [facilityId], references: [id])
+  facilityId Int
   @@map("cats")
 }
 
 model Facility {
   id       Int    @id @default(autoincrement())
   name     String @unique
-  employee Cat @relation(fields: [employeeId], references: [id])
-  employeeId    Int
+  Cat      Cat[]
   Dish     Dish[]
   @@map("facilities")
 }
